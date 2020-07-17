@@ -1,0 +1,109 @@
+<h1 class="text-center">Hi welcome to <span style="color:blueviolet;"><i class="fa fa-user-o" aria-hidden="true"></i>
+    {{title}}</span></h1>
+<div class="text-center logout">
+  <a (click)="logout()">Logout</a> &nbsp;
+</div>
+
+
+<div class="text-center pull-right buttons">
+  <a (click)=updateprofile()>Update Profile</a>
+  <a (click)=changepwd()>Change Password</a>
+</div>
+
+
+<div class="container" *ngIf="isAdmin">
+  <div class="usertable">
+    <h3 class="ml30">Registered Users</h3>
+    <table>
+      <thead>
+        <tr>
+          <th><b>Name</b></th>
+          <th><b>Email</b></th>
+          <th><b>Age</b></th>
+          <th><b>Gender</b></th>
+          <th><b>PAN Number</b></th>
+          <th><b>Mobile No</b></th>
+          <th colspan="2"><b>Action</b></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of usersList">
+          <td>{{user?.name | titlecase }}</td>
+          <td>{{user?.email | lowercase }}</td>
+          <td>{{user?.age}}</td>
+          <td>
+            <span *ngIf="user.gender === 'm'">Male</span>
+            <span *ngIf="user.gender === 'f'">Female</span>
+          </td>
+          <td>{{user?.pan | uppercase }}</td>
+          <td>{{user?.mobileno }}</td>
+          <td colspan="1">
+            <button type="button" (click)="edituser(user)">Edit</button>
+               </td>
+          <td colspan="1">
+            <button type="button" (click)="deleteuser(user._id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container userprofile" *ngIf="!isAdmin">
+  <div class="title">
+    <h2 style="text-align:center;">User Profile</h2>
+  </div>
+  <div><span class="label"><b>Name - </b></span>{{userProfile?.name}}</div>
+  <div><span class="label"><b>Email - </b></span>{{userProfile?.email}}</div>
+  <div><span class="label"><b>Age - </b></span>{{userProfile?.age}}</div>
+  <div><span class="label"><b>Gender - </b></span>{{userProfile?.gender}}</div>
+  <div><span class="label"><b>PAN Number - </b></span>{{userProfile?.pan | uppercase}}</div>
+  <div><span class="label"><b>Mobile No - </b></span>{{userProfile?.mobileno}}</div>
+</div>
+<!-- update user profile -->
+<div *ngIf="updateprof">
+  <form #f="ngForm" (ngSubmit)="update(f)">
+    <p>
+      <label>Mobile</label>
+      <input type="text" name="mobileNo" [ngModel]="userProfile?.mobileno" required
+        pattern="^((\+91)?|(91)?|(0)?)([6-9]{1})([0-9]{9})$">
+      <!-- <span *ngIf="mobileNo.errors.required"> Please enter the mobile No </span> -->
+    </p>
+    <p>
+      <label>PAN</label>
+      <input type="text" name="PANNo" [ngModel]="userProfile?.pan" required>
+      <!-- <span *ngIf="PANNo.errors.required"> Please enter the PAN No </span> -->
+    </p>
+    <p>
+      <button type="submit" [disabled]="!f.valid">Update</button>
+    </p>
+  </form>
+
+
+
+
+</div>
+
+<!-- change password -->
+<div *ngIf="changepwd1">
+  <form #c="ngForm" (ngSubmit)="changepass(c)">
+    <p class="formcontrol">
+      <label>Current Password</label>
+      <input type="password" name="opwd" ngModel required>
+    </p>
+    <p class="formcontrol">
+      <label>New Password</label>
+      <input type="password" name="pwd" ngModel required>
+    </p>
+    <p class="formcontrol">
+      <label>Confirm Password</label>
+      <input type="password" name="cpwd" ngModel required>
+    </p>
+    <p *ngIf="c.controls.pwd.value !== c.controls.cpwd.value">
+      Password not matching
+    </p>
+    <p>
+      <button type="submit" [disabled]="!c.valid">Change Password</button>
+    </p>
+  </form>
+</div>

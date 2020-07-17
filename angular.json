@@ -28,9 +28,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/font-awesome/css/font-awesome.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+"./node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -123,6 +128,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "reactiveform"
+    }
+  },
+  "defaultProject": "reactiveform",
+  "cli": {
+    "analytics": "8d1b9ab7-5448-48ff-9876-3c9bee8711af"
+  }
 }

@@ -1,0 +1,25 @@
+<h1>{{loginHeader}}</h1>
+<form [formGroup]="loginform" (ngSubmit)="login()">
+
+    <p>
+        <label>Enter Email Id</label>
+        <input type="text" placeholder="Enter Email" name="email" formControlName="email">
+        <span *ngIf="lemail.touched && lemail.errors?.required">please enter email id</span>
+        <span *ngIf="lemail.touched && lemail.errors?.pattern">please enter a valid email id</span>
+    </p>
+    <p>
+        <label>Enter Password</label>
+        <input type="password" placeholder="Enter Password" name="pwd" formControlName="pwd">
+        <span *ngIf="lpwd.touched && lpwd.errors?.required">Password Required</span>
+        <span *ngIf="lpwd.touched && lpwd.errors?.minlength">Password must be minimum 8 characters</span>
+    </p>
+    <p>
+        <button type="submit" [disabled]="!loginform.valid">Login</button>
+        <button type="reset">Clear</button>
+        <button type="button" *ngIf="isForgotPassword" (click)="resetPassword(loginform)">Reset Password</button>
+    </p>
+    <div class="buttondiv" *ngIf="!isForgotPassword">
+        <a class="forgotpass" (click)="setResetPassword()">Forgot password?</a>
+    </div>
+    If you are not regsitered still please<a [routerLink]="'/register'">Regsiter</a>
+</form>
