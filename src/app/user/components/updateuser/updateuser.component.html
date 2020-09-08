@@ -1,0 +1,33 @@
+<form [formGroup]="updateform" (ngSubmit)="updateuser()">
+    <p>
+        <label>Name</label>
+        <input type="text" name="uName" formControlName="uName">
+    </p>
+    <p>
+        <label>Email</label>
+        <input type="text" name="uMail" formControlName="uMail">
+    </p>
+    <p>
+        <label>Age</label>
+        <input type="text" name="uAge" formControlName="uAge" >
+    </p>
+    <p>
+        <label>Mobile Number</label>
+        <input type="text" name="uMobile" formControlName="uMobile">
+    </p>
+    <p>
+        <label>PAN Number</label>
+        <input type="text" name="uPAN" formControlName="uPAN">
+    </p>
+    <p>
+        <label>Gender</label>
+        <input type="radio" value="m" name="uGender" formControlName="uGender" > Male
+        <input type="radio" value="f" name="uGender" formControlName="uGender"> Female
+        <input type="radio" value="o" name="uGender" formControlName="uGender"> Others
+    </p>
+    <p>
+        <button type="submit" >Update</button>
+        <button type="reset">Cancel</button>
+    </p>
+        </form>
+    

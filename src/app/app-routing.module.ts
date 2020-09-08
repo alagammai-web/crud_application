@@ -1,17 +1,22 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './component/home/home.component';
-import { LoginComponent } from './component/login/login.component';
-import { RegisterComponent } from './component/register/register.component';
-import { UpdateuserComponent } from './component/updateuser/updateuser.component';
+
+
+import { LoginComponent } from './authentication/components/login/login.component';
+import { RegisterComponent } from './authentication/components/register/register.component';
+import { LandingComponent } from './core/components/landing/landing.component';
+import { HomeComponent } from './user/components/home/home.component';
+import { UpdateuserComponent } from './user/components/updateuser/updateuser.component';
 
 
 const routes: Routes = [
+  {path: 'landing', component: LandingComponent},
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'update', component: UpdateuserComponent},
-  {path: '', redirectTo: 'login', pathMatch: 'full'}
+  {path: '', redirectTo: 'landing', pathMatch: 'full'},
+  {path: '**', redirectTo: 'landing', pathMatch: 'full'}
 ];
 
 @NgModule({

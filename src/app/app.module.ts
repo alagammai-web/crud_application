@@ -3,34 +3,30 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './component/home/home.component';
-import { LoginComponent } from './component/login/login.component';
-import { RegisterComponent } from './component/register/register.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { CryptojsService } from './services/cryptojs.service';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TokenInterceptor } from './interceptors/token.interceptor';
-import { UpdateuserComponent } from './component/updateuser/updateuser.component';
+
+
+
+import { AuthenticationModule } from './authentication/authentication.module';
+import { CoreModule } from './core/core.module';
+import { FormsModule } from '@angular/forms';
+import { UserModule } from './user/user.module';
+import { ChangetextDirective } from './changetext.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    LoginComponent,
-    RegisterComponent,
-    UpdateuserComponent,
+    ChangetextDirective,
+   
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    AuthenticationModule,
+    CoreModule,
     FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
+    UserModule
   ],
-  providers: [
-    CryptojsService,
-    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
-  ],
+ 
   bootstrap: [AppComponent]
 })
 export class AppModule { 

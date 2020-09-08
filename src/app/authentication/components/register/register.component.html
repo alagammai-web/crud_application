@@ -1,0 +1,74 @@
+<form [formGroup]="contactForm" (ngSubmit)="register()">
+    <p>
+        <label>Name</label>
+        <input type="text" name="uName" formControlName="uName">
+        <span *ngIf="fname.touched && fname.errors?.required">please enter firstname</span>
+        <span *ngIf="fname.touched && fname.errors?.minlength">name must be 2 characters</span>
+    </p>
+    <p>
+        <label>Email</label>
+        <input type="text" name="uMail" formControlName="uMail">
+        <span *ngIf="uemail.touched && uemail.errors?.required">please enter email</span>
+        <span *ngIf="uemail.touched && uemail.errors?.pattern">please enter valid email</span>
+    </p>
+    <p>
+        <label>Age</label>
+        <input type="number" name="uAge" formControlName="uAge">
+        <span *ngIf="uage.touched && uage.errors?.required">please enter Age</span>
+        <!-- <span *ngIf="uemail.touched && uemail.errors?.pattern">please enter valid email</span> -->
+    </p>
+    <p>
+        <label>Mobile</label>
+        <input type="text" name="uMobile" formControlName="uMobile">
+        <span *ngIf="umobile.touched && umobile.errors?.required">please enter Age</span>
+        <!-- <span *ngIf="uemail.touched && uemail.errors?.pattern">please enter valid email</span> -->
+    </p>
+    <p>
+        <label>PAN</label>
+        <input type="text" name="uPAN" formControlName="uPAN" >
+        <span *ngIf="upan.touched && upan.errors?.required">please enter PAN number</span>
+    </p>
+    <p>
+        <label>Gender</label>
+        <input type="radio" value="m" name="uGender" formControlName="uGender"> Male
+        <input type="radio" value="f" name="uGender" formControlName="uGender"> Female
+        <input type="radio" value="o" name="uGender" formControlName="uGender"> Other
+        <span *ngIf="ugender.touched && ugender.errors?.required">please choose gender</span>
+    </p>
+    <!-- <p>
+        <label>Country</label>
+        <select name="country" formControlName="country">
+            <option >Select Country</option>
+            <option *ngFor="let place of places" [value]="place.value">{{place.name}}</option>
+        </select>
+        <span *ngIf="ucountry.touched && ucountry.errors?.required">please choose country</span>
+    </p> -->
+    <div>
+        <label>Hobby</label><br>
+        <p *ngFor="let hobby of uHobbies; let i=index">
+            <input type="checkbox"  [value]="hobby.value" (change)="fruitchange($event)"> {{hobby.name}} &nbsp;
+        </p>
+    </div>
+    
+    
+    <p>
+        <label>Password</label>
+        <input type="password" formControlName="password">
+        <span *ngIf="upwd.touched && upwd.errors?.required">please enter password</span>
+        <span *ngIf="upwd.touched && upwd.errors?.minlength">Password must be atleast 6 characters</span>
+    </p>
+    <p>
+        <label>Current Password</label>
+        <input type="password" formControlName="cpwd">
+        <span *ngIf="ucpwd.touched && ucpwd.errors?.required">please enter current password</span>
+        <span *ngIf="ucpwd.touched && ucpwd.errors?.hasError('pwdmismatch')">Your password and confirm password do not matchh</span>
+    </p>
+    <p>
+        <!-- [disabled]="!contactForm.valid" -->
+        <button type="submit" [disabled]="!contactForm.valid">Register</button>
+        <button type="reset">Cancel</button>
+    </p>
+        </form>
+    
+        <p>todays date: {{mn}}</p>
+    
